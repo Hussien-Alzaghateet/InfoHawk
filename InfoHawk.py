@@ -103,7 +103,7 @@ def GITHUB(username):
         
 
 
- def TIKTOK(username):
+def TIKTOK(username):
     url = f"https://www.tiktok.com/@{username}"
     try:
         response = requests.get(url)
