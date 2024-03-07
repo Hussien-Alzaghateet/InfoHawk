@@ -46,7 +46,7 @@ def FaceBook(username):
     if response.status_code == 200:
         data = response.text
         
-        # Check if the 'name' field is in the data
+   
         if username in data:
             return f"[+] {inputFiled} in Facebook {url}"
         
@@ -103,15 +103,19 @@ def GITHUB(username):
         
 
 
-def TIKTOK(username):
+ def TIKTOK(username):
     url = f"https://www.tiktok.com/@{username}"
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        data = response.text
-        
-        if username in data:
-            return f"[+] {inputFiled} in Tiktok {url}"        
+    try:
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data = response.text
+            
+            if username in data:
+                return f"[+] {inputFiled} in Tiktok {url}"        
+
+    except: 
+            print("needs a vpn in jordan")          
 
 
 
@@ -171,7 +175,7 @@ def draw_infohawk():
     """
     print(infohawk_art)
 
-# Call the function to draw InfoHawk
+
 draw_infohawk()
 
 print("welcome to infohawk v1.0.0 -Hussien Alzaghateet")
