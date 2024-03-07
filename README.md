@@ -1,6 +1,6 @@
-===============
+
 InfoHawk
-===============
+
 
 InfoHawk empowers you to delve deep into the digital landscape, offering seamless support for popular social media platforms including Facebook, Instagram, YouTube, Twitter, GitHub, and TikTok, alongside invaluable resources such as Wikipedia and Google Search.
 
