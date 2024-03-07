@@ -46,7 +46,7 @@ def FaceBook(username):
     if response.status_code == 200:
         data = response.text
         
-   
+        # Check if the 'name' field is in the data
         if username in data:
             return f"[+] {inputFiled} in Facebook {url}"
         
@@ -103,6 +103,7 @@ def GITHUB(username):
         
 
 
+ 
 def TIKTOK(username):
     url = f"https://www.tiktok.com/@{username}"
     try:
@@ -115,10 +116,100 @@ def TIKTOK(username):
                 return f"[+] {inputFiled} in Tiktok {url}"        
 
     except: 
-            print("needs a vpn in jordan")          
+            print("needs a vpn in jordan")      
+
+
+def Twitch(username):
+    url = f"https://www.twitch.tv/{username}"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.text
+        
+        if username in data:
+            return f"[+] {inputFiled} in Twitch {url}"
+        
+        else : 
+            return f"[+] {inputFiled} in Twitch {url}"
 
 
 
+import requests
+from bs4 import BeautifulSoup
+
+def GOOGLE_DORKS(query, num_results=15):
+    MethodSearch = "inurl:"
+    print()
+    print()
+    print(f"[*]This is {MethodSearch} Search Result ")
+    print()
+    try:
+        url = f"https://www.google.com/search?q={MethodSearch}{query}&num={num_results}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
+        search_items = soup.find_all("div", class_="tF2Cxc")
+        for item in search_items:
+            link = item.find("a")["href"]
+            title = item.find("h3").get_text()
+            print(f"{title}: {link}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+    #################################################
+
+
+    MethodSearch = "intext:"
+    print()
+    print()
+    print(f"[*]This is {MethodSearch} Search Result ")
+    print()
+    try:
+        url = f"https://www.google.com/search?q={MethodSearch}{query}&num={num_results}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
+        search_items = soup.find_all("div", class_="tF2Cxc")
+        for item in search_items:
+            link = item.find("a")["href"]
+            title = item.find("h3").get_text()
+            print(f"{title}: {link}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+    ####################################################
+
+    MethodSearch = "intitle:"
+    print()
+    print()
+    print(f"[*]This is intitle Search Result ")
+    print()
+    try:
+        url = f"https://www.google.com/search?q={MethodSearch}{query}&num={num_results}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
+        search_items = soup.find_all("div", class_="tF2Cxc")
+        for item in search_items:
+            link = item.find("a")["href"]
+            title = item.find("h3").get_text()
+            print(f"{title}: {link}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+        
+
+
+
+     
 
 
 def search_wikipedia(query):
@@ -175,7 +266,7 @@ def draw_infohawk():
     """
     print(infohawk_art)
 
-
+# Call the function to draw InfoHawk
 draw_infohawk()
 
 print("welcome to infohawk v1.0.0 -Hussien Alzaghateet")
@@ -186,9 +277,11 @@ print('[2] Youtube')
 print('[3] Twitter')
 print('[4] GitHub')
 print('[5] Tiktok')
-print('[6] wikipedia search')
-print('[7] google search')
-print('[8] All platforms')
+print('[6] Twitch')
+print('[7] wikipedia search')
+print('[8] google search')
+print('[9] google Dorks')
+print('[10] All platforms')
 print('[99] Exit')
 print()
 print()
@@ -232,8 +325,12 @@ elif option =='5' :
     Tiktok_Result=TIKTOK(inputFiled)
     print(Tiktok_Result)
 
-
 elif option == '6' :
+    inputFiled = input("Input your Target name :- ")
+    Twitch_Result = Twitch(inputFiled)
+    print(Twitch_Result)
+
+elif option == '7' :
     print("warning : Put what you want to search for between \"\"  ")
     print()
     print()
@@ -241,7 +338,7 @@ elif option == '6' :
     result = search_wikipedia(query)
     print(result)
 
-elif option == '7' : 
+elif option == '8' : 
     print("warning : Put what you want to search for between \"\"  ")
     print()
     print()
@@ -258,10 +355,25 @@ elif option == '7' :
         print()
 
 
+elif option == '9' : 
+    '''
+    Google_DORKING_Result = input("Enter what you want seacrh on Google: ")
+    results = GOOGLE_DORKS(Google_DORKING_Result)
+    for i, (title, link) in enumerate(results, start=1):
+        print(f"{i}. {title}")
+        print(link)
+        print()
+    '''
+    Google_Dork_Result = input("Enter a Name to Dork  : ")
+
+    GOOGLE_DORKS(Google_Dork_Result)
 
 
 
-elif option =='8' :
+
+
+
+elif option =='10' :
     inputFiled = input("Input your Target name :- ")
     username = convert_to_username(inputFiled)
     FaceBook_Result = FaceBook(username)
@@ -275,6 +387,15 @@ elif option =='8' :
     GetHub_Result=GITHUB(inputFiled)
     print(GetHub_Result)
     Tiktok_Result=TIKTOK(inputFiled)
+    Twitch_Result = Twitch(inputFiled)
+    print(Twitch_Result)
+    GOOGLE_DORKS(inputFiled)
+    Google_search_Result = google_search(inputFiled)
+    print()
+    print()
+    print(Google_search_Result)
+
+
 
 elif option == '99' :
     exit() 
