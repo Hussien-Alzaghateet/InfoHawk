@@ -269,7 +269,7 @@ def draw_infohawk():
 # Call the function to draw InfoHawk
 draw_infohawk()
 
-print("welcome to infohawk v1.0.0 -Hussien Alzaghateet")
+print("welcome to infohawk v1.0.0 -3xpl0it")
 print()
 print('[0] FaceBook')
 print('[1] Instagram')
